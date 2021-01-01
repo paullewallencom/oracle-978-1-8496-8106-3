@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>#TITLE#</title>
+    <link rel="icon" type="image/x-icon" href="#IMAGE_PREFIX#favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="#IMAGE_PREFIX#favicon.ico">
+
+    <!-- standard includes -->
+    <link rel="stylesheet" type="text/css"
+          href="../../extjs/resources/css/ext-all.css">
+    <script type="text/javascript"
+        src="../../extjs/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="../../extjs/ext-all.js"></script>
+
+    <!-- demo page only -->
+    <style type="text/css">
+        body {font-family:helvetica,tahoma,verdana,sans-serif;font-size:12px;}
+        h1 {font-size:large;margin-bottom:20px;}
+        h2 {font-size:16px;font-weight:bold;margin:10px 0;}
+    </style>
+
+    <!-- Static json tree data,
+         In APEX would use list or table to dynamically generate in the page
+    -->
+    <script type="text/javascript" src="navigation-tree-data.js"></script>
+
+    <!-- application javascript -->
+    <script type="text/javascript" src="TabCloseMenu.js"></script>
+    <script type="text/javascript" src="ex-10-tree-iframe-tabs.js"></script>
+</head>
+<body>
+    <div id="app-north-panel"><h1>Header Contents</h1></div>
+    <form id="wwvFlowForm">
+
+        <!-- Static page content, usually APEX Region tags -->
+        <div id="start-div" style="padding: 20px; padding-top: 32px">
+            <div style="float:left;" ><img src="layout-icon.gif" /></div>
+            <div style="margin-left:100px;">
+                <h2>Welcome!</h2>
+                <p>Clicking on leaf nodes in the navigation tree will
+                   open target pages in a new tab.<br />
+                   Repeated opening of the same tree node will
+                   simply focus on the page if it is already open.</p>
+            </div>
+        </div>
+
+    </form>
+</body>
+</html>

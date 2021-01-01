@@ -1,0 +1,7 @@
+// capture events by specific component
+Ext.util.Observable.capture(
+    Ext.getCmp('CmpId'),
+    function(e){
+        console.log(e);
+    }
+);

@@ -1,0 +1,129 @@
+CREATE OR REPLACE PACKAGE BODY plug_ext_form_numberfield AS
+
+FUNCTION render (
+  p_item                in apex_plugin.t_page_item,
+  p_plugin              in apex_plugin.t_plugin,
+  p_value               in varchar2,
+  p_is_readonly         in boolean,
+  p_is_printer_friendly in boolean )
+  return apex_plugin.t_page_item_render_result
+IS
+  l_result apex_plugin.t_page_item_render_result;
+
+  subtype attr is 
+    apex_application_page_items.attribute_01%type;
+
+  -- assign local names to attributes
+  l_allow_decimals    attr := p_item.attribute_01;
+  l_allow_negative    attr := p_item.attribute_02;
+  l_decimal_precision attr := p_item.attribute_03;
+  l_min_value         attr := p_item.attribute_04;
+  l_max_value         attr := p_item.attribute_05;
+  l_align             attr := p_item.attribute_06;
+
+  -- Only use escaped value for the HTML output!
+  l_code          varchar2(32767);
+  l_escaped_value varchar2(32767) 
+                    := sys.htf.escape_sc(p_value);
+  l_name          varchar2(30);
+BEGIN
+  -- Debug information
+  if apex_application.g_debug then
+    apex_plugin_util.debug_page_item (
+      p_plugin              => p_plugin,
+      p_page_item           => p_item,
+      p_value               => p_value,
+      p_is_readonly         => p_is_readonly,
+      p_is_printer_friendly => p_is_printer_friendly );
+  end if;
+
+  if p_is_readonly or p_is_printer_friendly then
+    -- emit hidden field if necessary
+    apex_plugin_util.print_hidden_if_readonly (
+      p_item_name           => p_item.name,
+      p_value               => p_value,
+      p_is_readonly         => p_is_readonly,
+      p_is_printer_friendly => p_is_printer_friendly );
+
+    -- emit display span with the value
+    apex_plugin_util.print_display_only (
+      p_item_name        => p_item.name,
+      p_display_value    => p_value,
+      p_show_line_breaks => false,
+      p_escape           => true,
+      p_attributes       => p_item.element_attributes );
+
+  else
+    -- If a page item saves state, we have to call the 
+    -- get_input_name_for_page_item to render the internal 
+    -- hidden p_arg_names field. It will also return the
+    -- HTML field name which we have to use when we render
+    -- the HTML input field.
+    l_name := apex_plugin.get_input_name_for_page_item(false);
+    sys.htp.p('<input type="text" name="'||l_name||
+       '" id="'||p_item.name||'" '||
+       'value="'||l_escaped_value||
+       '" size="'||p_item.element_width||'" '||
+       'maxlength="'||p_item.element_max_length||'" '||
+       coalesce(p_item.element_attributes,
+                'class="x-form-text"')||' />');
+
+
+    -- ****************************************************
+    -- @todo - write code for widget here
+    -- ****************************************************
+
+    l_code := 'Ext.onReady(function(){'||
+              'alert("@todo - write widget code");'||
+              '});';
+
+    -- Initialize page item when the page has been rendered.
+    apex_javascript.add_onload_code(p_code => l_code);
+
+    -- Tell APEX engine that field is navigable, in case 
+    -- it's the first item on the page, and APEX page is 
+    -- configured to navigate to first item (by default).
+    l_result.is_navigable := true;
+  end if;
+
+  return l_result;
+END render;
+
+
+FUNCTION ajax (
+  p_item   in apex_plugin.t_page_item,
+  p_plugin in apex_plugin.t_plugin )
+  return apex_plugin.t_page_item_ajax_result
+IS
+  l_result apex_plugin.t_page_item_ajax_result;
+BEGIN
+  -- @todo - not using AJAX for this widget
+
+  -- not used by APEX yet
+  return l_result;
+END ajax;
+
+
+
+FUNCTION validate (
+  p_item   in     apex_plugin.t_page_item,
+  p_plugin in     apex_plugin.t_plugin,
+  p_value  in     varchar2 )
+  return apex_plugin.t_page_item_validation_result
+IS
+  l_result apex_plugin.t_page_item_validation_result;
+BEGIN
+  -- Debug information
+  if apex_application.g_debug then
+    apex_plugin_util.debug_page_item (
+       p_plugin    => p_plugin,
+       p_page_item => p_item );
+  end if;
+
+
+  -- @todo - write validation code
+  return l_result;
+END validate;
+
+END plug_ext_form_numberfield;
+/

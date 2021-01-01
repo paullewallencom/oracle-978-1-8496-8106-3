@@ -1,0 +1,69 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Resizable iFramed Window Example</title>
+
+    <link rel="stylesheet" type="text/css" href="../../extjs/examples/shared/examples.css" />
+
+    <link rel="stylesheet" type="text/css" href="../../extjs/resources/css/ext-all.css">
+    <script type="text/javascript" src="../../extjs/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="../../extjs/ext-all.js"></script>
+
+    <script type="text/javascript">
+    Ext.ns('Ext.apex');
+    Ext.apex.IFrameComponent = Ext.extend(Ext.BoxComponent, {
+        /**
+         * The url to be shown in iframe
+         * @type {String}
+         */
+        url : Ext.SSL_SECURE_URL,
+
+        /**
+         * @private Just render an iframe
+         */
+        onRender : function(ct, position){
+            var url = this.url;
+            this.el = ct.createChild({tag: 'iframe', id: 'iframe-'+ this.id, frameBorder: 0, src: url});
+        }
+    });
+    Ext.reg('iframe', Ext.apex.IFrameComponent);
+
+    </script>
+
+
+</head>
+<body style="padding:20px">
+
+
+<h1>Modal Window with iFramed content</h1>
+
+<input type="button" id="show-btn" value="Show Window" />
+
+<script type="text/javascript">
+Ext.onReady(function(){
+    var win;
+
+    Ext.get('show-btn').on('click', function(){
+        // create the window on the first click and reuse on subsequent clicks
+        if(!win){
+            win = new Ext.Window({
+                title:'Modal Window',
+                width: 600,
+                height: 400,
+                items: [ new Ext.apex.IFrameComponent({ url: "content-page.html" }) ],
+
+                closeAction:'hide',
+                layout: 'fit',
+                modal: true,
+                plain: true,
+                resizable: true
+            });
+        }
+        win.show(this);
+    });
+
+});
+</script>
+
+</body>
+</html>

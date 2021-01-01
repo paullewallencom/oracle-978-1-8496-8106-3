@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title>#TITLE#</title>
+    <style type="text/css">
+        body {
+          font-family:helvetica,tahoma,verdana,sans-serif;
+          padding:20px;
+            ZZZpadding-top:32px;
+            font-size:13px;
+          background-color:#fff !important;
+        }
+        p {
+          margin-bottom:15px;
+        }
+        h1 {
+          font-size:large;
+          margin-bottom:20px;
+        }
+        h2 {
+          font-size:14px;
+            color:#333;
+            font-weight:bold;
+            margin:10px 0;
+        }
+    </style>
+    <script type="text/javascript">
+        function popup () {
+             alert('popup...');
+             new top.Ext.apex.PopupWindow( {
+                 url: "content-page.html",
+                 title: 'Popup Window',
+                 width: 490,
+                 height: 500
+             } ).show();
+             alert('...done');
+         }
+    </script>
+</head>
+<body>
+    <!-- Start page content -->
+    <div id="start-div">
+        <div style="float:left;" ><img src="layout-icon.gif" /></div>
+        <div style="margin-left:100px;">
+            <h2>iFrame Content</h2>
+            <p>This content has been added using an iFrame.</p>
+            <p><input type="button" value="Open Popup" onclick="popup(); return false;"/></p>
+        </div>
+    </div>
+
+</body>
+</html>

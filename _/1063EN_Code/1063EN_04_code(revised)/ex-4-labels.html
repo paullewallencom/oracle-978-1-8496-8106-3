@@ -1,0 +1,352 @@
+<html>
+   <head>
+      <title>#TITLE#</title>
+      <link rel="icon" href="#IMAGE_PREFIX#favicon.ico" type="image/x-icon">
+      <link rel="shortcut icon"
+          href="#IMAGE_PREFIX#favicon.ico" type="image/x-icon">
+
+      <!-- css includes -->
+      <link rel="stylesheet" type="text/css"
+          href="../../extjs/resources/css/ext-all.css">
+      <link rel="stylesheet" type="text/css" href="chapter4.css">
+
+      <!-- js includes -->
+      <script type="text/javascript" src="../../extjs/adapter/ext/ext-base.js">
+      </script>
+      <script type="text/javascript" src="../../extjs/ext-all-debug.js">
+      </script>
+
+<style type="text/css">
+
+/* DEMO CSS */
+
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,select,p,blockquote,th,td {
+    font: normal 12px tahoma,arial,helvetica,sans-serif;
+}
+body {margin-top:10;text-align:center}
+#wrapper {margin:auto;min-width:400px;text-align:left;width: 590px;}
+h1 {margin-bottom: 5px}
+
+/**
+ * The use of <button class="x-btn ux-btn">|</button> in the html is only for this demonstration.
+ * It is used to show the toolbar height correctly.
+ */
+.ux-btn {
+    border:1px solid transparent;
+    padding:2px 0;
+    position:relative;
+    text-align:center;
+    text-decoration:none !important;
+    color: transparent;
+    background:none repeat-x scroll 0 -1096px transparent;
+}
+.ext-ie .ux-btn {color: #D0DEF0}
+
+/** CSS for regions */
+
+.ux-panel {margin-bottom: 10;}
+.ux-panel .x-panel-body {padding: 5px}
+.ux-panel-body {background-color:#DFE8F6;}
+</style>
+
+<script type="text/javascript">Ext.onReady( function() {
+    // Init the singleton.  Any tag-based quick tips will start working.
+    Ext.QuickTips.init();
+
+    // Apply a set of config properties to the singleton, interceptTitles picks up standard title attribute.
+    Ext.apply(Ext.QuickTips.getQuickTip(), {
+        interceptTitles: true,
+        maxWidth: 400,
+        minWidth: 100,
+        showDelay: 50,
+        trackMouse: true
+    });
+});</script>
+   </head>
+   <body>
+       <div id="wrapper">
+<!-- ======================================================================================================= -->
+
+
+<h1>Basic Panel, No JavaScript</h1>
+<div id="example-1" class="x-panel ux-panel">
+    <div class="x-panel-header">
+        <span class="x-panel-header-text">#TITLE#</span>
+    </div>
+    <div class="x-panel-bwrap">
+        <div class="x-panel-body">
+            <div class="x-panel-tbar" align="right">
+                 #PREVIOUS##NEXT##DELETE##COPY##CHANGE#
+            </div>
+            <p>
+
+<table id="apex_layout_3404610060386373" class="formlayout" summary="">
+<tbody>
+<tr>
+  <td nowrap="nowrap" align="left">
+    <span id="P30_FIRST_NAME-label" class="ux-form-item-label">
+      <label for="P30_FIRST_NAME">First Name<em>*</em></label>
+    </span>
+  </td>
+  <td colspan="1" rowspan="1" align="left">
+    <input type="hidden" name="p_arg_names" value="3405505986386373">
+    <input type="text" name="p_t01" size="40" maxlength="2000" value="" id="P30_FIRST_NAME">
+  </td>
+</tr>
+<tr>
+  <td nowrap="nowrap" align="left">
+    <span id="P30_LAST_NAME-label" class="ux-form-item-label">
+      <label for="P30_LAST_NAME">Last Name</label>
+    </span>
+  </td>
+  <td colspan="1" rowspan="1" align="left">
+    <input type="hidden" name="p_arg_names" value="3405704237386373">
+    <input type="text" name="p_t02" size="40" maxlength="2000" value="" id="P30_LAST_NAME">
+  </td>
+</tr>
+<tr>
+  <td colspan="2" rowspan="1" align="left">
+    <span id="P30_ADDRESS-label" class="ux-form-item-label">
+      <label for="P30_ADDRESS">Address<em>*</em></label>
+    </span>
+    <br>
+    <input type="hidden" name="p_arg_names" value="3406417558604992">
+    <textarea name="p_t03" rows="5" cols="50" wrap="virtual" id="P30_ADDRESS"></textarea>
+  </td>
+</tr>
+</tbody>
+</table>
+
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- ======================================================================================================= -->
+
+<h1>Basic Panel, Collapsible</h1>
+<div id="example-2" class="x-panel ux-panel">
+    <div class="x-panel-header">
+        <span class="x-panel-header-text">#TITLE#</span>
+    </div>
+    <div class="x-panel-bwrap">
+        <div class="x-panel-body">
+            <div class="x-panel-tbar" align="right">
+                 #PREVIOUS##NEXT##DELETE##COPY##CHANGE#
+            </div>
+            <p>
+
+<table id="apex_layout_3404610060386373" class="formlayout" summary="">
+<tbody>
+<tr>
+  <td nowrap="nowrap" align="left">
+    <div class="ux-status-error" ext:qclass="x-form-invalid-tip" ext:qtip="First Name must be specified.">
+      <span id="P30_FIRST_NAME-label" class="ux-form-item-label">
+        <label for="P30_FIRST_NAME">First Name<em>*</em></label>
+      </span>
+    </div>
+  </td>
+  <td colspan="1" rowspan="1" align="left">
+    <input type="hidden" name="p_arg_names" value="3405505986386373">
+    <input type="text" name="p_t01" size="40" maxlength="2000" value="" id="P30_FIRST_NAME">
+  </td>
+</tr>
+<tr>
+  <td nowrap="nowrap" align="left">
+    <div class="ux-status-error" ext:qclass="x-form-invalid-tip" ext:qtip="Last name must be specified and must contain upper and lower case letters.">
+      <span id="P30_LAST_NAME-label" class="ux-form-item-label">
+        <label for="P30_LAST_NAME">Last Name</label>
+      </span>
+    </div>
+  </td>
+  <td colspan="1" rowspan="1" align="left">
+    <input type="hidden" name="p_arg_names" value="3405704237386373">
+    <input type="text" name="p_t02" size="40" maxlength="2000" value="" id="P30_LAST_NAME">
+  </td>
+</tr>
+<tr>
+  <td colspan="2" rowspan="1" align="left">
+    <div class="ux-status-error" ext:qclass="x-form-invalid-tip" ext:qtip="Address must be specified including either a street address or a P.O. box.">
+      <span id="P30_ADDRESS-label" class="ux-form-item-label">
+        <label for="P30_ADDRESS">Address<em>*</em></label>
+      </span>
+    </div>
+    <br>
+    <input type="hidden" name="p_arg_names" value="3406417558604992">
+    <textarea name="p_t03" rows="5" cols="50" wrap="virtual" id="P30_ADDRESS"></textarea>
+  </td>
+</tr>
+</tbody>
+</table>
+
+            </p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+Ext.onReady(function(){
+   new Ext.Panel({
+        allowDomMove : false,
+        applyTo: 'example-2',
+        animCollapse: false,
+        autoHeight: true,
+        collapsible:true,
+        //hideCollapseTool:true,
+        titleCollapse: true
+    });
+
+});
+</script>
+
+<!-- ======================================================================================================= -->
+<h1>Framed Panel, No JavaScript</h1>
+<div id="example-3" class="x-panel ux-panel">
+  <div class="x-panel-tl">
+    <div class="x-panel-tr">
+      <div class="x-panel-tc">
+        <div class="x-panel-header">
+          <span class="x-panel-header-text">#TITLE#</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="x-panel-bwrap">
+    <div class="x-panel-ml">
+      <div class="x-panel-mr">
+        <div class="x-panel-mc">
+          <div class="x-panel-tbar" align="right">
+            #PREVIOUS##NEXT##DELETE##COPY##CHANGE#
+          </div>
+          <div class="x-panel-body">
+            <p>
+
+<table id="apex_layout_3404610060386373" class="formlayout" summary="">
+<tbody>
+<tr>
+  <td nowrap="nowrap" align="left">
+    <span id="P30_FIRST_NAME-label" class="ux-form-item-label">
+      <label for="P30_FIRST_NAME">First Name<em>*</em></label>
+    </span>
+  </td>
+  <td colspan="1" rowspan="1" align="left">
+    <input type="hidden" name="p_arg_names" value="3405505986386373">
+    <input type="text" name="p_t01" size="40" maxlength="2000" value="" id="P30_FIRST_NAME">
+  </td>
+</tr>
+<tr>
+  <td nowrap="nowrap" align="left">
+    <span id="P30_LAST_NAME-label" class="ux-form-item-label">
+      <label for="P30_LAST_NAME">Last Name</label>
+    </span>
+  </td>
+  <td colspan="1" rowspan="1" align="left">
+    <input type="hidden" name="p_arg_names" value="3405704237386373">
+    <input type="text" name="p_t02" size="40" maxlength="2000" value="" id="P30_LAST_NAME">
+  </td>
+</tr>
+<tr>
+  <td colspan="2" rowspan="1" align="left">
+    <span id="P30_ADDRESS-label" class="ux-form-item-label">
+      <label for="P30_ADDRESS">Address<em>*</em></label>
+    </span>
+    <br>
+    <input type="hidden" name="p_arg_names" value="3406417558604992">
+    <textarea name="p_t03" rows="5" cols="50" wrap="virtual" id="P30_ADDRESS"></textarea>
+  </td>
+</tr>
+</tbody>
+</table>
+
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="x-panel-bl x-panel-nofooter">
+      <div class="x-panel-br">
+        <div class="x-panel-bc"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================================================================= -->
+
+<h1>Framed Panel, Collapsible</h1>
+<div id="example-4" class="x-panel ux-panel">
+    <div class="x-panel-header">
+        <span class="x-panel-header-text">#TITLE#</span>
+    </div>
+    <div class="x-panel-tbar" align="right">
+         #PREVIOUS##NEXT##DELETE##COPY##CHANGE#
+    </div>
+    <div  class="x-panel-body"><p>
+
+<table id="apex_layout_3404610060386373" class="formlayout" summary="">
+<tbody>
+<tr>
+  <td nowrap="nowrap" align="left">
+    <div class="ux-status-error" ext:qclass="x-form-invalid-tip" ext:qtip="First Name must be specified.">
+      <span id="P30_FIRST_NAME-label" class="ux-form-item-label">
+        <label for="P30_FIRST_NAME">First Name<em>*</em></label>
+      </span>
+    </div>
+  </td>
+  <td colspan="1" rowspan="1" align="left">
+    <input type="hidden" name="p_arg_names" value="3405505986386373">
+    <input type="text" name="p_t01" size="40" maxlength="2000" value="" id="P30_FIRST_NAME">
+  </td>
+</tr>
+<tr>
+  <td nowrap="nowrap" align="left">
+    <div class="ux-status-error" ext:qclass="x-form-invalid-tip" ext:qtip="Last name must be specified and must contain upper and lower case letters.">
+      <span id="P30_LAST_NAME-label" class="ux-form-item-label">
+        <label for="P30_LAST_NAME">Last Name</label>
+      </span>
+    </div>
+  </td>
+  <td colspan="1" rowspan="1" align="left">
+    <input type="hidden" name="p_arg_names" value="3405704237386373">
+    <input type="text" name="p_t02" size="40" maxlength="2000" value="" id="P30_LAST_NAME">
+  </td>
+</tr>
+<tr>
+  <td colspan="2" rowspan="1" align="left">
+    <div class="ux-status-error" ext:qclass="x-form-invalid-tip" ext:qtip="Address must be specified including either a street address or a P.O. box.">
+      <span id="P30_ADDRESS-label" class="ux-form-item-label">
+        <label for="P30_ADDRESS">Address<em>*</em></label>
+      </span>
+    </div>
+    <br>
+    <input type="hidden" name="p_arg_names" value="3406417558604992">
+    <textarea name="p_t03" rows="5" cols="50" wrap="virtual" id="P30_ADDRESS"></textarea>
+  </td>
+</tr>
+</tbody>
+</table>
+
+    </p></div>
+</div>
+
+<script type="text/javascript">
+Ext.onReady(function(){
+    new Ext.Panel({
+        applyTo: 'example-4',
+        animCollapse: false,
+        autoHeight: true,
+        collapsible:true,
+        frame: true,
+        titleCollapse: true
+    });
+});
+</script>
+
+
+<!-- ======================================================================================================= -->
+
+       </div>
+   </body>
+</html>

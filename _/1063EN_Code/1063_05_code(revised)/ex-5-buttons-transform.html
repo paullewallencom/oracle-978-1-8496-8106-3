@@ -1,0 +1,171 @@
+<html>
+   <head>
+      <title>#TITLE#</title>
+      <link rel="icon" href="#IMAGE_PREFIX#favicon.ico" type="image/x-icon">
+      <link rel="shortcut icon"
+          href="#IMAGE_PREFIX#favicon.ico" type="image/x-icon">
+
+      <!-- css includes -->
+      <link rel="stylesheet" type="text/css" href="../../extjs/resources/css/ext-all.css">
+
+      <!-- js includes -->
+      <script type="text/javascript" src="../../extjs/adapter/ext/ext-base.js"></script>
+      <script type="text/javascript" src="../../extjs/ext-all-debug.js"></script>
+      <script type="text/javascript" src="Override.Ext.Button.js"></script>
+
+
+<style type="text/css">
+
+/* DEMO CSS */
+
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,select,p,blockquote,th,td {
+    font: normal 12px tahoma,arial,helvetica,sans-serif;
+}
+body {margin-top:10;text-align:center}
+#wrapper {margin:auto;min-width:400px;text-align:left;width: 590px;}
+h1 {margin-bottom: 5px}
+
+html {
+  /* cf. http://www.hicksdesign.co.uk/journal/forcing-scrollbars-now-even-better */
+  height: 100%;
+  margin-bottom: 1px;
+}
+
+a:link, a:visited, a:active {
+  color: #0464BB;
+  text-decoration:none;
+}
+a:hover {
+  color: #1C417C;
+  text-decoration: underline;
+}
+
+.ux-icon-tick {
+    background-image:url(tick-square.gif) !important;
+}
+
+#toolbar table {margin-right: 5px}
+
+/* Ext buttons are created using tables, which are block level elements.
+ * Need to change to inline-block to allow side by side layout.
+ * IE supports inline-block for IE8 upwards, but with so many modes use inline for all versions.
+ */
+table.ux-btn {display:inline-block}
+.ext-ie table.ux-btn {display:inline}
+</style>
+
+   </head>
+   <body>
+       <div id="wrapper">
+<!-- ======================================================================================================= -->
+<h1>Buttons transformed from static markup</h1>
+<div id="toolbar">
+    <table cellspacing="0" class="ux-btn ux-btn-markup x-btn x-btn-noicon" onclick="alert('Do something');" style="width:auto" id="P40_APPLY_CHANGES">
+    <tbody class="x-btn-small x-btn-icon-small-left">
+    <tr><td class="x-btn-tl"><i>&nbsp;</i></td>
+        <td class="x-btn-tc"></td>
+        <td class="x-btn-tr"><i>&nbsp;</i></td>
+    </tr>
+    <tr><td class="x-btn-ml"><i>&nbsp;</i></td>
+        <td class="x-btn-mc"><em unselectable="on" class=""><button type="button" class="x-btn-text">Split Button</button></em></td>
+        <td class="x-btn-mr"><i>&nbsp;</i></td>
+    </tr>
+    <tr><td class="x-btn-bl"><i>&nbsp;</i></td>
+        <td class="x-btn-bc"></td>
+        <td class="x-btn-br"><i>&nbsp;</i></td>
+    </tr>
+    </tbody>
+    </table>
+
+    <table cellspacing="0" class="ux-btn ux-btn-markup x-btn x-btn-noicon" onclick="alert('Do something');" id="btn-2">
+    <tbody class="x-btn-small x-btn-icon-small-left">
+    <tr><td class="x-btn-tl"><i>&nbsp;</i></td>
+        <td class="x-btn-tc"></td>
+        <td class="x-btn-tr"><i>&nbsp;</i></td>
+    </tr>
+    <tr><td class="x-btn-ml"><i>&nbsp;</i></td>
+        <td class="x-btn-mc"><em unselectable="on" class=""><button type="button" class="x-btn-text">Button 2</button></em></td>
+        <td class="x-btn-mr"><i>&nbsp;</i></td>
+    </tr>
+    <tr><td class="x-btn-bl"><i>&nbsp;</i></td>
+        <td class="x-btn-bc"></td>
+        <td class="x-btn-br"><i>&nbsp;</i></td>
+    </tr>
+    </tbody>
+    </table>
+
+    <table cellspacing="0" class="ux-btn ux-btn-markup x-btn x-btn-noicon" onclick="alert('Do something');">
+    <tbody class="x-btn-small x-btn-icon-small-left">
+    <tr><td class="x-btn-tl"><i>&nbsp;</i></td>
+        <td class="x-btn-tc"></td>
+        <td class="x-btn-tr"><i>&nbsp;</i></td>
+    </tr>
+    <tr><td class="x-btn-ml"><i>&nbsp;</i></td>
+        <td class="x-btn-mc"><em unselectable="on" class=""><button type="button" class="x-btn-text">Button 3</button></em></td>
+        <td class="x-btn-mr"><i>&nbsp;</i></td>
+    </tr>
+    <tr><td class="x-btn-bl"><i>&nbsp;</i></td>
+        <td class="x-btn-bc"></td>
+        <td class="x-btn-br"><i>&nbsp;</i></td>
+    </tr>
+    </tbody>
+    </table>
+</div>
+
+
+<script type="text/javascript">
+Ext.onReady(function(){
+    // Page specific code
+    new Ext.SplitButton({
+        transformEl: 'P40_APPLY_CHANGES',
+        id:'P40_APPLY_CHANGES',
+        //text: 'My Button',
+        iconCls: 'ux-icon-tick',
+        //scale: 'large',
+        //handler: function(btn){
+        //    //handle a click on the button itself, overrides converted markup onclick code
+        //    Ext.Msg.alert('Button Click', 'You clicked the "' + btn.text + '" button.')
+        //},
+        menu: {
+            // these items will render as dropdown menu items when the arrow is clicked:
+            defaults: {
+                handler: onMenuItemClick
+            },
+            items: [{
+                text: 'Item 1',
+                request:'ITEM1'
+            }, {
+                text: 'Item 2',
+                request:'ITEM2',
+                handler: onMenuItemClick
+            }]
+        }
+    });
+
+    function onMenuItemClick(item){
+        //apex.submit(item.request);
+        Ext.Msg.alert('Menu Item Click', 'You clicked the "' + item.text + '" item with request "' + item.request + '".');
+    }
+});
+</script>
+
+<script type="text/javascript">
+// Application code
+Ext.onReady(function(){
+    // Convert remaining markup buttons to Ext components
+    // assigns id if exists, otherwise Ext will generate
+    var els = Ext.select("table.ux-btn-markup", true);
+    els.each(function(el){
+        new Ext.Button({transformEl: el, id:el.dom.id});
+    });
+
+});
+</script>
+
+
+
+<!-- ======================================================================================================= -->
+
+       </div>
+   </body>
+</html>

@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Resizable iFramed Panel Example</title>
+
+    <link rel="stylesheet" type="text/css" href="../../extjs/resources/css/ext-all.css">
+    <script type="text/javascript" src="../../extjs/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="../../extjs/ext-all.js"></script>
+
+    <style type="text/css">
+        body {font-family:helvetica,tahoma,verdana,sans-serif;padding:20px;padding-top:32px;font-size:13px;}
+        p {margin-bottom:15px;}
+        h1 {font-size:large;margin-bottom:20px;}
+        h2 {font-size:14px;color:#333;font-weight:bold;margin:10px 0;}
+    </style>
+
+    <script type="text/javascript">
+    Ext.ns('Ext.apex');
+    Ext.apex.IFrameComponent = Ext.extend(Ext.BoxComponent, {
+        /**
+         * The url to be shown in iframe
+         * @type {String}
+         */
+        url : Ext.SSL_SECURE_URL,
+
+        /**
+         * @private Just render an iframe
+         */
+        onRender : function(ct, position){
+            var url = this.url;
+            this.el = ct.createChild({tag: 'iframe', id: 'iframe-'+ this.id, frameBorder: 0, src: url});
+        }
+    });
+    Ext.reg('iframe', Ext.apex.IFrameComponent);
+
+    </script>
+
+
+</head>
+<body style="padding:20px">
+
+
+<h1>Basic Collapsible Panel with iFramed content</h1>
+<div id="example-1"></div>
+
+<script type="text/javascript">
+Ext.onReady(function(){
+    new Ext.Panel({
+        allowDomMove: false,
+        applyTo: 'example-1',
+        animCollapse: false,
+        //frame: true,
+        height: 400,
+        width: 600,
+        collapsible: true,
+        titleCollapse: true,
+        title: 'iFramed Page',
+        items: [new Ext.apex.IFrameComponent({
+            id: 'myIFrame',
+            url: "content-page.html"
+        })],
+        layout: 'fit',
+        listeners: {
+            render: function(p){
+                new Ext.Resizable(p.getEl(), {
+                    handles: 's e se',
+                    pinned: true,
+                    transparent: true,
+                    resizeElement: function(){
+                        var box = this.proxy.getBox();
+                        p.updateBox(box);
+                        if (p.layout) {
+                            p.doLayout();
+                        }
+                        if (Ext.isIE) {
+                            this.syncHandleHeight();
+                        }
+                        return box;
+                    }
+                });
+            }
+        }
+    });
+});
+</script>
+
+</body>
+</html>

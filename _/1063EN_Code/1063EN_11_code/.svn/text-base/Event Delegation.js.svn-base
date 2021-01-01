@@ -1,0 +1,12 @@
+// remove any Events on Body
+Ext.EventManager.removeAll(Ext.getBody());
+
+Ext.getBody().on({
+    click: function (e,t,o) {
+        e.stopEvent();
+        if (Ext.fly(t).hasClass('new-tab')) {
+            Ext.Msg.alert('Open in new Tab', t);
+        }
+    },
+    delegate: 'a'
+});

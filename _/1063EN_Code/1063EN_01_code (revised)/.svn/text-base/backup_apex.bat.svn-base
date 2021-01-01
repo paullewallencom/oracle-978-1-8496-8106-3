@@ -1,0 +1,47 @@
+@echo off
+
+setlocal
+
+REM Set the BASE to be the parent directory of the "bin" dir
+REM where this script is located.
+set script_dir=%~f0
+set script_dir=%script_dir:\bin\backup_apex.bat=%
+@set BASE=%script_dir%
+
+
+REM -------------------------------------------------------------------
+REM Database 11g specific
+REM -------------------------------------------------------------------
+REM set CLASSPATH=%CLASSPATH%;%BASE%\oracle\instantclient_11_1\ojdbc6.jar
+REM set CLASSPATH=%CLASSPATH%;%BASE%\oracle\utilities
+
+REM -------------------------------------------------------------------
+REM Database 10g specific
+REM -------------------------------------------------------------------
+set CLASSPATH=%CLASSPATH%;%BASE%\oracle\instantclient_10_2\classes12.jar
+set CLASSPATH=%CLASSPATH%;%BASE%\oracle\utilities
+
+cd /d %BASE%\database\apex
+
+REM Make sure our local copy is up to date
+if not ("%SVN_HOME%") == () "%SVN_HOME%"\svn update
+
+java oracle.apex.APEXExport -db mark-pc:1521:XE -user playpen -password playpen -workspaceid 1038420889063720 -skipExportDate
+
+REM Check if SVN_HOME has been set
+if ("%SVN_HOME%") == () goto :no_svn_home
+
+"%SVN_HOME%"\svn add *.sql --force
+"%SVN_HOME%"\svn commit -m "Automated backup and check in."
+
+goto exit
+
+:no_svn_home
+echo ERROR
+echo ERROR: SVN_HOME environment variable is not set, no automated SVN check in.
+echo ERROR
+
+goto exit
+
+:exit
+endlocal

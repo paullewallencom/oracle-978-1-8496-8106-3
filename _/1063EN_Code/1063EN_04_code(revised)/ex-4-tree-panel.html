@@ -1,0 +1,92 @@
+<html>
+   <head>
+      <title>#TITLE#</title>
+      <link rel="icon" href="#IMAGE_PREFIX#favicon.ico" type="image/x-icon">
+      <link rel="shortcut icon" href="#IMAGE_PREFIX#favicon.ico" type="image/x-icon">
+
+      <!-- css includes -->
+      <link rel="stylesheet" type="text/css" href="../../extjs/resources/css/ext-all.css">
+
+      <!-- js includes -->
+      <script type="text/javascript" src="../../extjs/adapter/ext/ext-base.js"></script>
+      <script type="text/javascript" src="../../extjs/ext-all-debug.js"></script>
+      <script type="text/javascript" src="Ext.apex.tree.TreePanel.js"></script>
+
+<style type="text/css">
+/* DEMO CSS */
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,select,p,blockquote,th,td,label {
+    font: normal 11px tahoma,arial,helvetica,sans-serif;
+}
+body {margin-top:10;text-align:center}
+#wrapper {margin:auto;min-width:250px;text-align:left;width: 250px;}
+h1 {margin-bottom: 5px}
+
+#tree-div {overflow:auto; height:200px;border:1px solid #c3daf9;}
+
+.ux-lock {
+    background-image:url(../../extjs/resources/images/default/grid/hmenu-lock.gif) !important;
+}
+
+</style>
+
+   </head>
+   <body>
+       <div id="wrapper">
+<!-- ======================================================================================================= -->
+
+
+<h1>Tree Panel</h1>
+<div id="tree-div"></div>
+
+<script type="text/javascript">
+
+Ext.onReady(function(){
+    var treeData;
+    var myTree;
+
+    // define tree data as an object
+    treeData = {text:"Root Node", expanded:true, children:[
+    {id:"L01",text:"Cars",       href:"#",leaf:false,children:[
+    {id:"L02",text:"Passenger",  href:"#",leaf:true},
+    {id:"L03",text:"4WD",        href:"#",leaf:true}]},
+    {id:"L04",text:"Marine",     href:"#",leaf:false,children:[
+    {id:"L05",text:"Motorized",  href:"#",leaf:false,children:[
+    {id:"L06",text:"Diesel",     href:"#",leaf:true}]},
+    {id:"L07",text:"Sail",       href:"#",leaf:true,isCurrent:true,
+        iconCls:'ux-lock',
+        listeners:{click:function(node, e){
+          // stop standard event
+          e.stopEvent();
+          Ext.MessageBox.show({
+             title: 'Credits',
+             msg: 'Website developed by Snazzy Websites',
+             buttons: Ext.MessageBox.OK
+          });
+
+        }}
+    }]},
+    {id:"L08",text:"Motorcycles",href:"#",leaf:false,children:[
+    {id:"L09",text:"Road",       href:"#",leaf:true},
+    {id:"L10",text:"Off Road",   href:"#",leaf:true}]}
+    ]};
+
+    // create the tree
+    myTree = new Ext.apex.tree.TreePanel({
+        renderTo: 'tree-div',
+        useArrows: true,
+        autoScroll: true,
+        animate: true,
+        border: false,
+        rootVisible: false,
+        root: treeData
+    });
+
+});
+
+
+</script>
+
+<!-- ======================================================================================================= -->
+       </div>
+   </body>
+</html>

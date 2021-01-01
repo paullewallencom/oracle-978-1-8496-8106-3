@@ -1,0 +1,44 @@
+<html>
+   <head>
+      <title>#TITLE#</title>
+      <link rel="icon" href="#IMAGE_PREFIX#favicon.ico" type="image/x-icon">
+      <link rel="shortcut icon"
+          href="#IMAGE_PREFIX#favicon.ico" type="image/x-icon">
+
+      <!-- css includes -->
+      <link rel="stylesheet" type="text/css"
+          href="../../extjs/resources/css/ext-all.css">
+      <link rel="stylesheet" type="text/css" href="ex3-1-local-viewport.css">
+
+      <!-- js includes -->
+      <script type="text/javascript" src="../../extjs/adapter/ext/ext-base.js">
+      </script>
+      <script type="text/javascript" src="../../extjs/ext-all.js">
+      </script>
+      <script type="text/javascript" src="ex3-1-local-viewport.js">
+      </script>
+   </head>
+   <body>
+      <div id="app-north-panel">
+         <div id="app-logo"><a href="&HOME_LINK.">#LOGO#</a></div>
+         <div id="app-navigation-bar">
+            #NAVIGATION_BAR# #CUSTOMIZE# &APP_USER.
+         </div>
+         #REGION_POSITION_01#
+      </div>
+      <div id="app-west-panel">#REGION_POSITION_02#</div>
+      <div id="app-center-panel">
+         #FORM_OPEN#
+            <div id="app-messages">
+               #GLOBAL_NOTIFICATION##SUCCESS_MESSAGE##NOTIFICATION_MESSAGE#
+            </div>
+            <div id="app-content">#BOX_BODY#</div>
+         #FORM_CLOSE#
+      </div>
+      <div id="app-east-panel">#REGION_POSITION_03#</div>
+      <div id="app-south-panel">footer contents go here</div>
+   </body>
+</html>
+
+
+

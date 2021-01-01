@@ -1,0 +1,146 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Resizable iFramed Panel Example</title>
+
+    <link rel="stylesheet" type="text/css" href="../../extjs/resources/css/ext-all.css">
+    <script type="text/javascript" src="../../extjs/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="../../extjs/ext-all.js"></script>
+
+    <style type="text/css">
+        body {font-family:helvetica,tahoma,verdana,sans-serif;padding:20px;padding-top:32px;font-size:13px;}
+        p {margin-bottom:15px;}
+        h1 {font-size:large;margin-bottom:20px;}
+        h2 {font-size:14px;color:#333;font-weight:bold;margin:10px 0;}
+        .ux-panel {margin-bottom: 10px;}
+    </style>
+
+<script type="text/javascript">
+/**
+ * This should be in your application JS library.
+ */
+Ext.ns('Ext.apex');
+Ext.apex.IFrameComponent = Ext.extend(Ext.BoxComponent, {
+    url: Ext.SSL_SECURE_URL,
+    onRender: function(ct, position){
+        var url = this.url;
+        this.el = ct.createChild({
+            tag: 'iframe',
+            id: 'iframe-' + this.id,
+            frameBorder: 0,
+            src: url
+        });
+    }
+});
+Ext.reg('iframe', Ext.apex.IFrameComponent);
+
+
+/**
+ *  Add the factory pattern Ext.apex.iFramePanel
+ *  to your application JS library also.
+ *
+ *  This keeps your page JS light with just a parameters passed.
+ *
+ */
+Ext.apex.iFramePanel = function(config){
+    return new Ext.Panel(Ext.apply({
+        allowDomMove: false,
+        animCollapse: false,
+        collapsible: true,
+        deferIFrame: config.collapsed || false,
+        items: [new Ext.apex.IFrameComponent()],
+        layout: 'fit',
+        titleCollapse: true,
+        url: Ext.SSL_SECURE_URL,
+        listeners: {
+            render: function(p){
+                if (this.handles != 'none') {
+                    new Ext.Resizable(p.getEl(), {
+                        handles: config.handles || 's e se',
+                        pinned: true,
+                        transparent: true,
+                        resizeElement: function(){
+                            var box = this.proxy.getBox();
+                            p.updateBox(box);
+                            if (p.layout) {
+                                p.doLayout();
+                            }
+                            if (Ext.isIE) {
+                                this.syncHandleHeight();
+                            }
+                            return box;
+                        }
+                    });
+                }
+            },
+            afterrender: function(){
+                this.iframe = this.body.child('iframe');
+                if (!this.deferIFrame) {
+                    this.setSrc(this.url);
+                }
+            },
+            expand: function(){
+                if (this.iframe && !this.iframe.rendered) {
+                    this.setSrc(this.url);
+                }
+            }
+        },
+        setSrc: function(url){
+            if (this.rendered && this.iframe) {
+                var mask = new Ext.LoadMask(this.body, {
+                    removeMask: true
+                });
+                new Ext.util.DelayedTask(function(){
+                    mask.show();
+                    new Ext.util.DelayedTask(function(){
+                        mask.hide();
+                    }).delay(250);
+                }).delay(150);
+                this.iframe.dom.src = url;
+                this.iframe.rendered = true;
+            }
+
+            return this;
+        }
+
+    }, config));
+};
+
+</script>
+
+
+</head>
+<body style="padding:20px">
+
+
+<h1>Factory Pattern for iFramed Panels</h1>
+
+<div id="example-1" class="ux-panel"></div>
+<div id="example-2"></div>
+
+<script type="text/javascript">
+Ext.onReady(function(){
+    Ext.apex.iFramePanel({
+        applyTo: 'example-1',
+        title: 'iFramed Page',
+        frame: true,
+        height: 200,
+        width: 400,
+        url: "content-page.html"
+    });
+
+    Ext.apex.iFramePanel({
+        applyTo: 'example-2',
+        height: 400,
+        width: 600,
+        collapsed: true,
+        title: 'Wikipedia',
+        url: "http://wikipedia.com",
+        handles: 'all'
+    });
+
+});
+</script>
+
+</body>
+</html>

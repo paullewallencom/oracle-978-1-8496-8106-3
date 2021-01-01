@@ -1,0 +1,320 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <title>#TITLE#</title>
+      <link rel="icon" href="#IMAGE_PREFIX#favicon.ico" type="image/x-icon">
+      <link rel="shortcut icon" href="#IMAGE_PREFIX#favicon.ico" type="image/x-icon">
+
+      <!-- css includes -->
+      <link rel="stylesheet" type="text/css" href="../../extjs/resources/css/ext-all.css">
+
+      <!-- js includes -->
+      <script type="text/javascript" src="../../extjs/adapter/ext/ext-base.js"></script>
+      <script type="text/javascript" src="../../extjs/ext-all-debug.js"></script>
+
+
+      <!-- ****** Custom Button ****** -->
+      <script type="text/javascript" src="Ext.apex.Button.js"></script>
+
+
+<style type="text/css">
+
+/* DEMO CSS */
+
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,select,p,blockquote,th,td {
+    font: normal 12px tahoma,arial,helvetica,sans-serif;
+}
+body {margin-top:10;text-align:center}
+#wrapper {margin:auto;min-width:400px;text-align:left;width: 590px;}
+h1 {margin-bottom: 5px; margin-top:30px;}
+
+html {
+  /* cf. http://www.hicksdesign.co.uk/journal/forcing-scrollbars-now-even-better */
+  height: 100%;
+  margin-bottom: 1px;
+}
+
+a:link, a:visited, a:active {color: #0464BB;text-decoration:none;}
+a:hover {color: #1C417C;text-decoration: underline;}
+
+
+
+/* APEX BUILDER BUTTON */
+button {
+  border: 0px;
+  cursor: pointer;
+  font-weight: normal;
+  padding: 0 10px 0 0;
+  text-align: center;
+  overflow: visible; // removes extra side padding in IE //
+}
+
+button span {
+  position: relative;
+  display: block;
+  white-space: nowrap;
+  font-size: 13px;
+  padding: 0 4px 0 15px;
+}
+
+
+/* Ext buttons are created using tables, which are block level elements.
+ * Need to change to inline to allow side by side layout
+ */
+table.ux-btn {display:inline}
+
+
+/** Alternative Button based on <button><span><em></em></span></button> */
+button.ux-btn-alt{
+  border:0;
+  background:none;
+  cursor: pointer;
+  padding:0;
+  margin:0;
+  width:auto;
+  overflow: visible; /* removes extra side padding in IE */
+  text-align:center;
+  white-space:nowrap;
+  height: 22px;
+  }
+
+.ux-btn-alt span, .ux-btn-alt span em {
+  display: block;
+  height: 22px;
+  line-height: 22px;
+}
+
+/* override extra padding in Firefox */
+.ux-btn-alt::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/* prevent RH edge disappearing when pressed */
+.ext-opera .ux-btn-alt span {
+  margin-right:2px;
+  margin-bottom:1px;
+}
+
+.ux-btn-alt em{
+  color:#333333;
+  font:11px arial,tahoma,helvetica,sans-serif;
+}
+
+.ux-btn-alt em{
+  padding-left:10px;
+  background:url(btn-sprite.gif) no-repeat 0 0;
+  }
+
+.ux-btn-alt span{
+  padding:0 10px 0 0;
+  background:url(btn-sprite.gif) no-repeat right -100px;
+  }
+
+.ux-btn-alt:hover em, .ux-btn-alt-over em {
+  background-position: 0 -30px !important;
+}
+
+.ux-btn-alt:hover span, .ux-btn-alt-over span {
+  background-position: right -130px !important;
+}
+
+.ux-btn-alt:active em, .ux-btn-alt-click em{
+  color:#000000;
+  background-position: 0 -60px !important;
+}
+
+.ux-btn-alt:active span, .ux-btn-alt-click span {
+  background-position: right -160px !important;
+}
+
+.x-toolbar .ux-btn-alt span, .x-toolbar .ux-btn-alt em {
+  background-position: 0 -100px;
+}
+
+.ux-btn-alt img {position: relative; top: 3px} /* for 16x16px image */
+
+
+
+
+/* ******************************************************************* */
+
+button.button-small-orange-gray-bg {
+  background: url(bt-orange-gray-bg-r.gif) right no-repeat;
+}
+
+button.button-small-orange-gray-bg span {
+  height: 20px;
+  line-height: 20px;
+  background: url(bt-orange-gray-bg-l.gif) left no-repeat;
+  color: #4f4f4f;
+}
+
+
+
+.ux-lock {
+    background-image:url(hmenu-lock.gif) !important;
+}
+</style>
+
+   </head>
+   <body>
+       <div id="wrapper">
+<!-- ======================================================================================================= -->
+
+<h1>APEX Builder button</h1>
+<button type="button" class="button-small-orange-gray-bg" onclick="alert('do something')" value="APEX button">
+  <span>APEX button</span>
+</button>
+
+
+<h1>APEX IR button (CSS overridden)</h1>
+<button onclick="gReport.controls.menu(this,'apexir_ACTIONSMENU',false)" value="Actions" type="button" class="dhtmlMenu" id="apexir_ACTIONSMENUROOT">
+  <span>Actions</span>
+</button>
+
+<h1>Sliding Doors meet CSS Sprites</h1>
+<div>
+<button type="button" class="ux-btn-alt ux-btn-markup" onclick="alert('do something')" value="Normal">
+  <span><em>Normal</em></span>
+</button>
+<button type="button" class="ux-btn-alt ux-btn-markup ux-btn-alt-over" onclick="alert('do something')" value="Hover">
+  <span><em class="x-btn-text">Hover</em></span>
+</button>
+<button type="button" class="ux-btn-alt ux-btn-markup ux-btn-alt-click" onclick="alert('do something')" value="Active">
+  <span style="vertical-align:center"><em class="x-btn-text">Active</em></span>
+</button>
+<button type="button" class="ux-btn-alt ux-btn-markup" onclick="alert('do something')" value="Normal">
+  <span><em>Apply Changes</em></span>
+</button>
+</div>
+
+
+
+
+<h1>Sliding Doors with static icons</h1>
+<div class="x-toolbar">
+<button type="button" class="ux-btn-alt ux-btn-markup" onclick="alert('do something')" value="Normal">
+  <span><em>Normal</em></span>
+</button>
+<button type="button" class="ux-btn-alt ux-btn-markup ux-btn-alt-over" onclick="alert('do something')" value="Hover">
+  <span><em class="x-btn-text">Hover</em></span>
+</button>
+<button type="button" class="ux-btn-alt ux-btn-markup ux-btn-alt-click" onclick="alert('do something')" value="Active" disabled="">
+  <span style="vertical-align:center"><em class="x-btn-text">Active</em></span>
+</button>
+<button type="button" class="ux-btn-alt ux-btn-markup" onclick="alert('do something')" value="Normal">
+  <span><em><img src="../../extjs/resources/images/default/grid/hmenu-lock.gif"/>Normal</em></span>
+</button>
+<button type="button" class="ux-btn-alt ux-btn-markup ux-btn-alt-over" onclick="alert('do something')" value="Hover">
+  <span><em class="x-btn-text"><img src="../../extjs/resources/images/default/grid/hmenu-lock.gif"/>Hover</em></span>
+</button>
+<button type="button" class="ux-btn-alt ux-btn-markup ux-btn-alt-click" onclick="alert('do something')" value="Active" disabled="">
+  <span style="vertical-align:center"><em class="x-btn-text"><img src="../../extjs/resources/images/default/grid/hmenu-lock.gif"/>Active</em></span>
+</button>
+</div>
+
+
+
+
+
+<h1>Button using CSS Sliding Doors</h1>
+<div>
+<button id="btn" type="button" class="ux-btn-alt ux-btn-markup" onclick="alert('do something')" value="CSS Only">
+  <span><em>CSS Only</em></span>
+</button>
+<button type="button" class="ux-btn-alt ux-btn-markup" onclick="alert('do something')" value="CSS Only" style="width:200px">
+  <span><em class="x-btn-text">CSS Only</em></span>
+</button>
+<button type="button" class="ux-btn-alt ux-btn-markup" onclick="alert('do something')" value="CSS Only" disabled="">
+  <span style="vertical-align:center"><em class="x-btn-text"><img class="ux-lock" src="../../extjs/resources/images/default/s.gif" width="16px" height="16px" />CSS Only</em></span>
+</button>
+<button type="button" class="ux-btn-alt ux-btn-markup" onclick="alert('do something')" value="CSS Only">
+  <span><em class="x-btn-text">CSS Only</em></span>
+</button>
+</div>
+
+<h1>Hideous Ext.Button</h1>
+<table cellspacing="0" onclick="alert('do something')" class="ux-btn x-btn x-btn-noicon">
+<tbody class="x-btn-small x-btn-icon-small-left">
+<tr><td class="x-btn-tl"><i>&nbsp;</i></td>
+    <td class="x-btn-tc"></td>
+    <td class="x-btn-tr"><i>&nbsp;</i></td>
+</tr>
+<tr><td class="x-btn-ml"><i>&nbsp;</i></td>
+    <td class="x-btn-mc"><em unselectable="on" class=""><button type="button" class="x-btn-text">HTML Only</button></em></td>
+    <td class="x-btn-mr"><i>&nbsp;</i></td>
+</tr>
+<tr><td class="x-btn-bl"><i>&nbsp;</i></td>
+    <td class="x-btn-bc"></td>
+    <td class="x-btn-br"><i>&nbsp;</i></td>
+</tr>
+</tbody>
+</table>
+
+<table cellspacing="0" onclick="alert('do something')" class="ux-btn x-btn x-btn-noicon" id="convert2">
+<tbody class="x-btn-small x-btn-icon-small-left">
+<tr><td class="x-btn-tl"><i>&nbsp;</i></td>
+    <td class="x-btn-tc"></td>
+    <td class="x-btn-tr"><i>&nbsp;</i></td>
+</tr>
+<tr><td class="x-btn-ml"><i>&nbsp;</i></td>
+    <td class="x-btn-mc"><em unselectable="on" class=""><button type="button" class="x-btn-text">HTML Only</button></em></td>
+    <td class="x-btn-mr"><i>&nbsp;</i></td>
+</tr>
+<tr><td class="x-btn-bl"><i>&nbsp;</i></td>
+    <td class="x-btn-bc"></td>
+    <td class="x-btn-br"><i>&nbsp;</i></td>
+</tr>
+</tbody>
+</table>
+
+<table cellspacing="0" onclick="alert('do something')" class="ux-btn x-btn x-btn-noicon" id="convert3">
+<tbody class="x-btn-small x-btn-icon-small-left">
+<tr><td class="x-btn-tl"><i>&nbsp;</i></td>
+    <td class="x-btn-tc"></td>
+    <td class="x-btn-tr"><i>&nbsp;</i></td>
+</tr>
+<tr><td class="x-btn-ml"><i>&nbsp;</i></td>
+    <td class="x-btn-mc"><em unselectable="on" class=""><button type="button" class="x-btn-text">HTML Only</button></em></td>
+    <td class="x-btn-mr"><i>&nbsp;</i></td>
+</tr>
+<tr><td class="x-btn-bl"><i>&nbsp;</i></td>
+    <td class="x-btn-bc"></td>
+    <td class="x-btn-br"><i>&nbsp;</i></td>
+</tr>
+</tbody>
+</table>
+
+
+<h1>Dynamically generated</h1>
+<div id="aaa"></div>
+
+<script type="text/javascript">
+
+var btn;
+
+Ext.onReady(function(){
+
+/* Standard */
+    new Ext.Button({
+        text: 'Standard Ext Btn',
+        renderTo: 'aaa',
+        iconCls: 'ux-lock',
+        handler: function() {
+            alert("You clicked?");
+        }
+    });
+
+});
+
+</script>
+
+
+
+<!-- ======================================================================================================= -->
+
+       </div>
+       <div class="x-clear"></div>
+   </body>
+</html>

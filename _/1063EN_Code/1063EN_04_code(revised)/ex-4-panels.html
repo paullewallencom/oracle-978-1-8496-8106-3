@@ -1,0 +1,351 @@
+<html>
+   <head>
+      <title>#TITLE#</title>
+      <link rel="icon" href="#IMAGE_PREFIX#favicon.ico" type="image/x-icon">
+      <link rel="shortcut icon"
+          href="#IMAGE_PREFIX#favicon.ico" type="image/x-icon">
+
+      <!-- css includes -->
+      <link rel="stylesheet" type="text/css"
+          href="../../extjs/resources/css/ext-all.css">
+
+      <!-- js includes -->
+      <script type="text/javascript" src="../../extjs/adapter/ext/ext-base.js">
+      </script>
+      <script type="text/javascript" src="../../extjs/ext-all-debug.js">
+      </script>
+
+<style type="text/css">
+
+/* DEMO CSS */
+
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,select,p,blockquote,th,td,label {
+    font: normal 11px tahoma,arial,helvetica,sans-serif;
+}
+body {margin-top:10;text-align:center}
+#wrapper {margin:auto;min-width:400px;text-align:left;width: 590px;}
+h1 {margin-bottom: 5px}
+
+/**
+ * The use of <button class="x-btn ux-btn">|</button> in the html is only for this demonstration.
+ * It is used to show the toolbar height correctly.
+ */
+.ux-btn {
+    border:1px solid transparent;
+    padding:2px 0;
+    position:relative;
+    text-align:center;
+    text-decoration:none !important;
+    color: transparent;
+    background:none repeat-x scroll 0 -1096px transparent;
+}
+.ext-ie .ux-btn {color: #D0DEF0}
+
+/** CSS for regions */
+
+.ux-panel {margin-bottom: 10;}
+.ux-panel .x-panel-body {padding: 5px}
+.ux-panel-body {background-color:#DFE8F6;}
+.ux-panel .x-toolbar {border-bottom: 1px solid #99BBE8 !important;}
+
+#example-7 .x-panel-tbar {border-bottom: 1px solid #F8FBFC; border-left: 1px solid #99BBE8; border-right: 1px solid #99BBE8;}
+#example-7 .x-panel-mc .x-panel-tbar {border-bottom: 1px solid #F8FBFC; border-left: 0 none; border-right: 0 none;}
+#example-7 .x-toolbar {border-top: 0 none !important;border-right: 0 none; border-bottom: 1px solid #99BBE8 !important; border-left: 0 none; }
+#example-7 .x-panel-ml {padding-left: 2px}
+#example-7 .x-panel-mr {padding-right: 2px}
+#example-7 .x-panel-mc {padding-top: 0}
+#example-7 .x-panel-bwrap .ux-panel-body {padding: 5px 5px 0}
+
+#example-10 .x-panel-tbar {border-bottom: 1px solid #F8FBFC}
+#example-10 .x-toolbar {border-top: 0 none !important;border-right: 0 none; border-bottom: 1px solid #99BBE8 !important; border-left: 0 none; }
+#example-10 .x-panel-ml {padding-left: 2px}
+#example-10 .x-panel-mr {padding-right: 2px}
+#example-10 .x-panel-mc {padding-top: 0}
+
+
+</style>
+
+   </head>
+   <body>
+       <div id="wrapper">
+<!-- ======================================================================================================= -->
+
+
+<h1>Basic Panel, No JavaScript</h1>
+<div id="example-1" class="x-panel ux-panel">
+    <div class="x-panel-header">
+        <span class="x-panel-header-text">#TITLE#</span>
+    </div>
+    <div class="x-panel-bwrap">
+        <div class="x-panel-body">
+            <div class="x-panel-tbar" align="right">
+                 #PREVIOUS##NEXT##DELETE##COPY##CHANGE#
+            </div>
+            <p>#BODY#</p>
+        </div>
+    </div>
+</div>
+
+<!-- ======================================================================================================= -->
+
+<h1>Basic Panel, Collapsible</h1>
+<div id="example-2" class="x-panel ux-panel">
+    <div class="x-panel-header">
+        <span class="x-panel-header-text">#TITLE#</span>
+    </div>
+    <div class="x-panel-bwrap">
+        <div class="x-panel-body">
+            <div class="x-panel-tbar" align="right">
+                 #PREVIOUS##NEXT##DELETE##COPY##CHANGE#
+            </div>
+            <p>#BODY#</p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+Ext.onReady(function(){
+   new Ext.Panel({
+        allowDomMove : false,
+        applyTo: 'example-2',
+        animCollapse: false,
+        autoHeight: true,
+        collapsible:true,
+        //hideCollapseTool:true,
+        titleCollapse: true
+    });
+
+});
+</script>
+
+<!-- ======================================================================================================= -->
+
+<h1>Framed Panel, No JavaScript</h1>
+<div id="example-3" class="x-panel ux-panel">
+  <div class="x-panel-tl">
+    <div class="x-panel-tr">
+      <div class="x-panel-tc">
+        <div class="x-panel-header">
+          <span class="x-panel-header-text">#TITLE#</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="x-panel-bwrap">
+    <div class="x-panel-ml">
+      <div class="x-panel-mr">
+        <div class="x-panel-mc">
+          <div class="x-panel-tbar" align="right">
+            #PREVIOUS##NEXT##DELETE##COPY##CHANGE#
+          </div>
+          <div class="x-panel-body">
+            <p>#BODY#</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="x-panel-bl x-panel-nofooter">
+      <div class="x-panel-br">
+        <div class="x-panel-bc"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================================================================= -->
+
+<h1>Framed Panel, Collapsible</h1>
+<div id="example-4" class="x-panel ux-panel">
+    <div class="x-panel-header">
+        <span class="x-panel-header-text">#TITLE#</span>
+    </div>
+    <div class="x-panel-tbar" align="right">
+         #PREVIOUS##NEXT##DELETE##COPY##CHANGE#
+    </div>
+    <div  class="x-panel-body"><p>#BODY#</p></div>
+</div>
+
+<script type="text/javascript">
+Ext.onReady(function(){
+    new Ext.Panel({
+        applyTo: 'example-4',
+        animCollapse: false,
+        autoHeight: true,
+        collapsible:true,
+        frame: true,
+        titleCollapse: true
+    });
+});
+</script>
+
+
+<!-- ======================================================================================================= -->
+<h1>Basic Panel, Collapsible (standard toolbar css)</h1>
+<div id="example-5" class="x-panel ux-panel">
+    <div class="x-panel-header"><span class="x-panel-header-text">#TITLE#</span></div>
+    <div class="x-panel-bwrap">
+        <div class="x-panel-tbar" align="right">
+            <div class="x-toolbar x-small-editor x-toolbar-layout-ct">
+               <button class="x-btn ux-btn">|</button>
+               #PREVIOUS##NEXT##DELETE##COPY##CHANGE#
+            </div>
+        </div>
+        <div class="x-panel-body">
+            <p>#BODY#</p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+Ext.onReady(function(){
+   new Ext.Panel({
+        applyTo: 'example-5',
+        animCollapse: false,
+        autoHeight: true,
+        collapsible:true,
+        titleCollapse: true
+    });
+
+});
+</script>
+
+<!-- ======================================================================================================= -->
+
+
+<h1>Framed Panel, Collapsible (minor customization to toolbar css)</h1>
+<div id="example-6" class="x-panel ux-panel">
+    <div class="x-panel-header"><span class="x-panel-header-text">#TITLE#</span></div>
+    <div class="x-panel-tbar" align="right">
+        <div class="x-toolbar x-small-editor x-toolbar-layout-ct">
+           <button class="x-btn ux-btn">|</button>
+           #PREVIOUS##NEXT##DELETE##COPY##CHANGE#
+        </div>
+    </div>
+    <div class="x-panel-body ux-panel-body">
+        <p>#BODY#</p>
+    </div>
+</div>
+
+<script type="text/javascript">
+Ext.onReady(function(){
+   new Ext.Panel({
+        applyTo: 'example-6',
+        animCollapse: false,
+        autoHeight: true,
+        collapsible:true,
+        frame: true,
+        titleCollapse: true
+    });
+
+});
+</script>
+
+<!-- ======================================================================================================= -->
+
+<h1>Framed Panel, Collapsible (with more customization to toolbar css)</h1>
+<div id="example-7" class="x-panel ux-panel">
+    <div class="x-panel-header"><span class="x-panel-header-text">#TITLE#</span></div>
+        <div class="x-panel-tbar" align="right">
+            <div class="x-toolbar x-small-editor x-toolbar-layout-ct">
+               <button class="x-btn ux-btn">|</button>
+               #PREVIOUS##NEXT##DELETE##COPY##CHANGE#
+            </div>
+        </div>
+        <div class="x-panel-body ux-panel-body">
+            <p>#BODY#</p>
+        </div>
+</div>
+
+<script type="text/javascript">
+Ext.onReady(function(){
+   new Ext.Panel({
+        allowDomMove : false,
+        applyTo: 'example-7',
+        animCollapse: false,
+        autoHeight: true,
+        autoScroll: true,
+        //autoWidth: true,
+        collapsible:true,
+        frame: true,
+        header:true,
+        hideCollapseTool:false,
+        titleCollapse: true
+    });
+
+});
+</script>
+
+<!-- ======================================================================================================= -->
+<h1>Basic Panel with ToolBar, No JavaScript</h1>
+<div id="example-8" class="x-panel ux-panel">
+
+    <div class="x-panel-header"><span class="x-panel-header-text">#TITLE#</span></div>
+
+    <div class="x-panel-bwrap">
+        <div class="x-panel-tbar" align="right">
+            <div class="x-toolbar x-small-editor x-toolbar-layout-ct">
+               <button class="x-btn ux-btn">|</button>
+               #PREVIOUS##NEXT##DELETE##COPY##CHANGE#
+            </div>
+        </div>
+            <div class="x-panel-body">
+                <p>#BODY#</p>
+            </div>
+    </div>
+</div>
+
+<!-- ======================================================================================================= -->
+
+<h1>Framed Panel with ToolBar, No JavaScript (minor customization to toolbar css)</h1>
+<div id="example-9" class="x-panel ux-panel">
+  <div class="x-panel-tl"><div class="x-panel-tr"><div class="x-panel-tc"><div class="x-panel-header x-unselectable">
+    <span class="x-panel-header-text">#TITLE#</span>
+  </div></div></div></div>
+  <div class="x-panel-bwrap">
+    <div class="x-panel-ml"><div class="x-panel-mr"><div class="x-panel-mc">
+            <div class="x-panel-tbar" align="right">
+                <div class="x-toolbar x-small-editor x-toolbar-layout-ct">
+                   <button class="x-btn ux-btn">|</button>
+                   #PREVIOUS##NEXT##DELETE##COPY##CHANGE#
+                </div>
+            </div>
+    <div class="x-panel-body">
+       <p>#BODY#</p>
+    </div></div></div></div>
+    <div class="x-panel-bl x-panel-nofooter"><div class="x-panel-br"><div class="x-panel-bc"></div></div></div>
+  </div>
+</div>
+
+<!-- ======================================================================================================= -->
+
+<h1>Framed Panel with ToolBar, No JavaScript (with more customization to toolbar css)</h1>
+<div id="example-10" class="x-panel ux-panel">
+    <div class="x-panel-tl"><div class="x-panel-tr"><div class="x-panel-tc">
+        <div class="x-panel-header"><span class="x-panel-header-text">#TITLE#</span></div>
+    </div></div></div>
+
+    <div class="x-panel-bwrap">
+        <div class="x-panel-ml"><div class="x-panel-mr"><div class="x-panel-mc">
+            <div class="x-panel-tbar" align="right">
+                <div class="x-toolbar x-small-editor x-toolbar-layout-ct">
+                   <button class="x-btn ux-btn">|</button>
+                   #PREVIOUS##NEXT##DELETE##COPY##CHANGE#
+                </div>
+            </div>
+            <div class="x-panel-body">
+                <p>#BODY#</p>
+            </div>
+        </div></div></div>
+
+        <div class="x-panel-bl x-panel-nofooter"><div class="x-panel-br"><div class="x-panel-bc">
+        </div></div></div>
+    </div>
+</div>
+
+<!-- ======================================================================================================= -->
+
+       </div>
+   </body>
+</html>
